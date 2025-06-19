@@ -2,79 +2,45 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>汪汪的惊喜</title>
   <style>
     body {
+      margin: 0;
       background-color: #fff8e1;
       font-family: "微软雅黑", sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    h1 {
-      color: #ff6f61;
-      margin: 20px 0;
-    }
-    .slider {
-      position: relative;
-      max-width: 90%;
-      margin: auto;
       overflow: hidden;
     }
-    .slides {
+    h1 {
+      text-align: center;
+      color: #ff6f61;
+      margin: 20px 0 10px;
+    }
+    .slider {
       display: flex;
-      transition: transform 0.5s ease;
-      width: 200%; /* 两张图占两页 */
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      width: 100vw;
+      height: calc(100vh - 80px); /* 除去标题空间 */
     }
-    .slides img {
-      width: 100%;
+    .slider::-webkit-scrollbar {
+      display: none; /* 隐藏滚动条 */
+    }
+    .slider img {
+      width: 100vw;
+      height: 100%;
+      object-fit: contain;
+      scroll-snap-align: start;
       flex-shrink: 0;
-    }
-    .buttons {
-      margin-top: 10px;
-    }
-    .buttons button {
-      padding: 8px 16px;
-      font-size: 16px;
-      margin: 0 10px;
-      cursor: pointer;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      border-radius: 5px;
     }
   </style>
 </head>
 <body>
   <h1>大美女给你的小惊喜 💝</h1>
-
   <div class="slider">
-    <div class="slides" id="slides">
-      <img src="img1.png" alt="图1">
-      <img src="img2.png" alt="图2">
-    </div>
+    <img src="img1.png" alt="图1" />
+    <img src="img2.png" alt="图2" />
   </div>
-
-  <div class="buttons">
-    <button onclick="prev()">上一张</button>
-    <button onclick="next()">下一张</button>
-  </div>
-
-  <script>
-    let currentIndex = 0;
-    function updateSlide() {
-      const slides = document.getElementById("slides");
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-    function prev() {
-      currentIndex = (currentIndex - 1 + 2) % 2;
-      updateSlide();
-    }
-    function next() {
-      currentIndex = (currentIndex + 1) % 2;
-      updateSlide();
-    }
-  </script>
 </body>
 </html>
